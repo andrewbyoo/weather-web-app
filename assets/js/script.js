@@ -37,8 +37,19 @@ function getApi() {
         })
         .then(function (requestData) {
           console.log(requestData)
-          var currentTemp = requestData.current.weather[0].main
-          var currentWeatherIcon = requestData.current.weather[0].main
+          var currentWeatherIconCode = requestData.current.weather[0].icon
+          var currentWeatherIcon = 'http://openweathermap.org/img/w/' + currentWeatherIconCode + '.png';
+          var currentTemp = requestData.current.temp
+          var currentWind = requestData.current.wind_speed
+          var currentHumidity = requestData.current.humidity
+          var uvIndex = requestData.current.uvi
+
+          console.log(currentWeatherIconCode)
+          console.log(currentWeatherIcon)
+          console.log(currentTemp)
+          console.log(currentWind)
+          console.log(currentHumidity)
+          console.log(uvIndex)
         })
     })
 }

@@ -44,12 +44,26 @@ function getApi() {
           var currentHumidity = requestData.current.humidity
           var uvIndex = requestData.current.uvi
 
-          console.log(currentWeatherIconCode)
-          console.log(currentWeatherIcon)
-          console.log(currentTemp)
-          console.log(currentWind)
-          console.log(currentHumidity)
-          console.log(uvIndex)
+          console.log(currentWeatherIconCode + ' currentWeather')
+          console.log(currentWeatherIcon + ' currentWeather')
+          console.log(currentTemp + ' currentWeather')
+          console.log(currentWind + ' currentWeather')
+          console.log(currentHumidity + ' currentWeather')
+          console.log(uvIndex + ' currentWeather')
+
+          for (var i = 0; i < 5; i++) {
+            var forecastWeatherIconCode = requestData.daily[i].weather[0].icon
+            var forecastWeatherIcon = 'http://openweathermap.org/img/w/' + forecastWeatherIconCode + '.png';
+            var forecastTemp = requestData.daily[i].temp.day
+            var forecastWind = requestData.daily[i].wind_speed
+            var forecastHumidity = requestData.daily[i].humidity
+
+            console.log(forecastWeatherIconCode + ' forecast' + i)
+            console.log(forecastWeatherIcon + ' forecast' + i)
+            console.log(forecastTemp + ' forecast' + i)
+            console.log(forecastWind + ' forecast' + i)
+            console.log(forecastHumidity + ' forecast' + i)
+          }
         })
     })
 }

@@ -14,7 +14,8 @@ var forecastWind = document.getElementsByClassName('forecastWind');
 var forecastHumidity = document.getElementsByClassName('forecastHumidity');
 var geocodingAPI = 'JIAm99s7cv9HGwGfe0zIAg3ZEQBLSobn'
 var oneCallAPI = 'ef5e2549b8aa888c5f64f0c4c89090d6';
-var unix;
+var unixDate;
+var convertedDate;
 
 // Search button for the city input
 searchBtn.addEventListener('click', function (event) {
@@ -47,6 +48,8 @@ function getApi() {
         // Function that retrieves specific data for the current date as well as the next 5 days
         .then(function (requestData) {
           console.log(requestData)
+          unixDate = requestData.current.dt
+          convertedDate = moment.unix(unixDate).format('M/D/YYYY')
           var currentWeatherIconCode = requestData.current.weather[0].icon
           var currentWeatherIcon = 'http://openweathermap.org/img/w/' + currentWeatherIconCode + '.png';
           var currentTemp = requestData.current.temp
@@ -54,6 +57,8 @@ function getApi() {
           var currentHumidity = requestData.current.humidity
           var uvIndex = requestData.current.uvi
 
+          console.log(unixDate)
+          console.log(convertedDate)
           console.log(currentWeatherIconCode + ' currentWeather')
           console.log(currentWeatherIcon + ' currentWeather')
           console.log(currentTemp + ' currentWeather')
@@ -61,7 +66,7 @@ function getApi() {
           console.log(currentHumidity + ' currentWeather')
           console.log(uvIndex + ' currentWeather')
 
-          // One Call API forecast gives the same date for the first forecast date if it is before 4PM, condition needed to get the correct forecast dates
+          // One Call API forecast gives the current date for the first forecast date if it is before 4PM, condition needed to get the correct forecast dates
           // Sets variable j for if it is before or after 4PM
           if (parseInt(moment().format("H")) < 16) {
             var j = 1;
@@ -78,13 +83,16 @@ function getApi() {
 
           // For loop to retrieve specific data for the 5 day forecast
           for (var i = j; i < k; i++) {
+            unixDate = requestData.daily[i].dt
+            convertedDate = moment.unix(unixDate).format('M/D/YYYY')
             var forecastWeatherIconCode = requestData.daily[i].weather[0].icon
             var forecastWeatherIcon = 'http://openweathermap.org/img/w/' + forecastWeatherIconCode + '.png';
             var forecastTemp = requestData.daily[i].temp.day
             var forecastWind = requestData.daily[i].wind_speed
             var forecastHumidity = requestData.daily[i].humidity
 
-            console.log(requestData.daily[i].dt)
+            console.log(unixDate)
+            console.log(convertedDate)
             console.log(forecastWeatherIconCode + ' forecast' + i)
             console.log(forecastWeatherIcon + ' forecast' + i)
             console.log(forecastTemp + ' forecast' + i)

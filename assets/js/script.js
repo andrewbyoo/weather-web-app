@@ -21,10 +21,22 @@ searchBtn.addEventListener('click', function (event) {
 
 function getApi() {
   var geocodingUrl = 'http://www.mapquestapi.com/geocoding/v1/address?key=' + geocodingAPI + '&location=' + searchInput.value;
-  // var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?q=' +  + '&appid=' + oneCallAPI;
-console.log(geocodingUrl)
-  // fetch(requestUrl)
-  //   .then(function (response) {
-  //     return response.json();
-  //   })
+
+  fetch(geocodingUrl)
+    .then(function (geocodeResponse) {
+      return geocodeResponse.json();
+    })
+    .then(function (geocodeData) {
+      var latitude = geocodeData.results[0].locations[0].latLng.lat
+      var longitude = geocodeData.results[0].locations[0].latLng.lng
+      var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&appid=' + oneCallAPI;
+
+      fetch(requestUrl)
+        .then(function (requestResponse) {
+          return requestResponse.json();
+        })
+        .then(function (requestData) {
+          var currentWeatherIcon = requestData.current.weather[0].main
+        })
+    })
 }

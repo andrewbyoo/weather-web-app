@@ -13,6 +13,17 @@ h1 {
   text-shadow: 0px 0px 20px #0000ff;
 }
 
-#searchedCity, #currentDate, #currentIcon {
-  display: inline;
+.card {
+  min-width: 142px;
+  background-color: #8eb4fc;
+  margin: 1px;
+}
+
+#searchInput, #searchBtn {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+#currentWeather {
+  padding: .25em;
 }

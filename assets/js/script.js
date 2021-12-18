@@ -49,7 +49,6 @@ function getApi() {
 
         // Function that retrieves specific data for the current date as well as the next 5 days
         .then(function (requestData) {
-          console.log(requestData)
           unixDate = requestData.current.dt
           convertedDate = moment.unix(unixDate).format('M/D/YYYY')
           var currentWeatherIconCode = requestData.current.weather[0].icon
@@ -59,15 +58,6 @@ function getApi() {
           var currentHumidityOutput = requestData.current.humidity
           var uvIndex = requestData.current.uvi
 
-          console.log(unixDate)
-          console.log(convertedDate)
-          console.log(currentWeatherIconCode + ' currentWeather')
-          console.log(currentWeatherIcon + ' currentWeather')
-          console.log(currentTempOutput + ' currentWeather')
-          console.log(currentWindOutput + ' currentWeather')
-          console.log(currentHumidityOutput + ' currentWeather')
-          console.log(uvIndex + ' currentWeather')
-
           searchedCity.innerHTML = searchInput.value;
           currentDate.innerHTML = convertedDate;
           currentIcon.setAttribute('src', 'http://openweathermap.org/img/w/' + currentWeatherIconCode + '.png')
@@ -75,6 +65,19 @@ function getApi() {
           currentWind.innerHTML = 'Wind: ' + currentWindOutput + ' MPH';
           currentHumidity.innerHTML = 'Humidity: ' + currentHumidityOutput + '%';
           currentUV.innerHTML = uvIndex;
+
+          // Sets class currentUV span element to a specific class depending on what UV index was returned from One Call API
+          if (uvIndex < 3) {
+            currentUV.setAttribute('class', 'lowUV');
+          } else if (uvIndex >= 3  && uvIndex < 6) {
+            currentUV.setAttribute('class', 'moderateUV');
+          } else if (uvIndex >= 6  && uvIndex < 8) {
+            currentUV.setAttribute('class', 'highUV');
+          } else if (uvIndex >= 8  && uvIndex < 11) {
+            currentUV.setAttribute('class', 'veryHighUV');
+          } else {
+            currentUV.setAttribute('class', 'extremeUV');
+          }
 
           // One Call API forecast gives the current date for the first forecast date if it is before 4PM, condition needed to get the correct forecast dates
           // Sets variable j for if it is before or after 4PM

@@ -49,17 +49,17 @@ function getApi() {
 
         // Function that retrieves specific data for the current date as well as the next 5 days
         .then(function (requestData) {
-          unixDate = requestData.current.dt
-          convertedDate = moment.unix(unixDate).format('M/D/YYYY')
-          var currentWeatherIconCode = requestData.current.weather[0].icon
-          var currentWeatherIcon = 'http://openweathermap.org/img/w/' + currentWeatherIconCode + '.png';
-          var currentTempOutput = requestData.current.temp
-          var currentWindOutput = requestData.current.wind_speed
-          var currentHumidityOutput = requestData.current.humidity
-          var uvIndex = requestData.current.uvi
+          unixDate = requestData.current.dt;
+          convertedDate = moment.unix(unixDate).format('M/D/YYYY');
+          var currentWeatherIconCode = requestData.current.weather[0].icon;
+          var currentTempOutput = requestData.current.temp;
+          var currentWindOutput = requestData.current.wind_speed;
+          var currentHumidityOutput = requestData.current.humidity;
+          var uvIndex = requestData.current.uvi;
 
+          // Outputs all data variables to the HTML
           searchedCity.innerHTML = searchInput.value;
-          currentDate.innerHTML = convertedDate;
+          currentDate.innerHTML = '(' + convertedDate + ')';
           currentIcon.setAttribute('src', 'http://openweathermap.org/img/w/' + currentWeatherIconCode + '.png')
           currentTemp.innerHTML = 'Temp: ' + currentTempOutput + '&#xb0; F';
           currentWind.innerHTML = 'Wind: ' + currentWindOutput + ' MPH';
@@ -79,15 +79,16 @@ function getApi() {
             currentUV.setAttribute('class', 'extremeUV');
           }
 
-          // One Call API forecast gives the current date for the first forecast date if it is before 4PM, condition needed to get the correct forecast dates
-          // Sets variable j for if it is before or after 4PM
+          // One Call API forecast gives the current date for the first forecast date, condition applied to get the correct forecast dates in case the forecast dates are updated in the API at any given moment
+
+          // Sets variable j for if the first day in the forecast is still the current date
           if (parseInt(moment().format("H")) < 16) {
             var j = 1;
           } else {
             var j = 0;
           };
 
-          // Sets variable k for if it is before or after 4PM
+          // Sets variable k for if the first day in the forecast is still the current date
           if (parseInt(moment().format("H")) < 16) {
             var k = 6;
           } else {
@@ -96,13 +97,12 @@ function getApi() {
 
           // For loop to retrieve specific data for the 5 day forecast
           for (var i = j; i < k; i++) {
-            unixDate = requestData.daily[i].dt
-            convertedDate = moment.unix(unixDate).format('M/D/YYYY')
-            var forecastWeatherIconCode = requestData.daily[i].weather[0].icon
-            var forecastWeatherIcon = 'http://openweathermap.org/img/w/' + forecastWeatherIconCode + '.png';
-            var forecastTempOutput = requestData.daily[i].temp.day
-            var forecastWindOutput = requestData.daily[i].wind_speed
-            var forecastHumidityOutput = requestData.daily[i].humidity
+            unixDate = requestData.daily[i].dt;
+            convertedDate = moment.unix(unixDate).format('M/D/YYYY');
+            var forecastWeatherIconCode = requestData.daily[i].weather[0].icon;
+            var forecastTempOutput = requestData.daily[i].temp.day;
+            var forecastWindOutput = requestData.daily[i].wind_speed;
+            var forecastHumidityOutput = requestData.daily[i].humidity;
 
             console.log(unixDate)
             console.log(convertedDate)

@@ -18,77 +18,75 @@
   <main class="row">
 
     <div class="col-12 col-md-3">
-      <div>
-        <form class="card-body">
-          <p>Spot for search and search history</p>
-          <input name="searchInput" type="text" autofocus="true" placeholder="Search" id="searchInput"/>
-          <button type="submit" class="btn btn-primary" id="searchBtn">Search</button>
-        </form>
+      <form class="card-body">
+        <h4>Search for a city:</h4>
+        <input name="searchInput" type="text" autofocus="true" placeholder="Search" id="searchInput"/>
+        <button type="submit" class="btn btn-primary " id="searchBtn">Search</button>
+          <hr>
+      </form>
+      <div class="card-body">
+        <ul class="list-unstyled"></ul>
       </div>
     </div>
 
     <section class="col-12 col-md-9">
-      <div>
-        <div class="card-body">
-          <article class="col">
-            <h4 id="searchedCity">City name searched</h4>
-            <div id="currentDate">(Current Date)</div>
-            <i id="currentIcon">Current date weather icon</i>
-            <div class="row">
-              <p id="currentTemp">Temp: Temp retrieved from API</p>
-            </div>
-            <div class="row">
-              <p id="currentWind">Wind: Wind MPG retrieved from API</p>
-            </div>
-            <div class="row">
-              <p id="currentHumidity">Humidity: Humidity % retrieved from API</p>
-            </div>
-            <div class="row">
-              <p id="currentUV">UV Index: UV Index retrieved from API</p>
-            </div>
-          </article>
-          <article class="row">
-            <h6 class="row">5-Day Forecast:</h6>
-            <div class="row">
-              <div class="col">
-                <div class="forecastDate">1 day in future</div>
-                <div class="forecastIcon">Icon of predicted weather</div>
-                <div class="forecastTemp">Temp: predicted temp</div>
-                <div class="forecastWind">Wind: predicted windspeed</div>
-                <div class="forecastHumidity">Humidity: predicted humidity</div>
-              </div>
-              <div class="col">
-                <div class="forecastDate">2 day in future</div>
-                <div class="forecastIcon">Icon of predicted weather</div>
-                <div class="forecastTemp">Temp: predicted temp</div>
-                <div class="forecastWind">Wind: predicted windspeed</div>
-                <div class="forecastHumidity">Humidity: predicted humidity</div>
-              </div>
-              <div class="col">
-                <div class="forecastDate">3 day in future</div>
-                <div class="forecastIcon">Icon of predicted weather</div>
-                <div class="forecastTemp">Temp: predicted temp</div>
-                <div class="forecastWind">Wind: predicted windspeed</div>
-                <div class="forecastHumidity">Humidity: predicted humidity</div>
-              </div>
-              <div class="col">
-                <div class="forecastDate">4 day in future</div>
-                <div class="forecastIcon">Icon of predicted weather</div>
-                <div class="forecastTemp">Temp: predicted temp</div>
-                <div class="forecastWind">Wind: predicted windspeed</div>
-                <div class="forecastHumidity">Humidity: predicted humidity</div>
-              </div>
-              <div class="col">
-                <div class="forecastDate">5 day in future</div>
-                <div class="forecastIcon">Icon of predicted weather</div>
-                <div class="forecastTemp">Temp: predicted temp</div>
-                <div class="forecastWind">Wind: predicted windspeed</div>
-                <div class="forecastHumidity">Humidity: predicted humidity</div>
-              </div>
-            </div>
-          </article>
+      <article class="row" id="currentWeather">
+        <h4 class="card-body" id="searchedCity">City name searched</h4>
+        <div id="currentDate">(Current Date)</div>
+        <i id="currentIcon">Current date weather icon</i>
+        <div class="row">
+          <p id="currentTemp">Temp: Temp retrieved from API</p>
         </div>
-      </div>
+        <div class="row">
+          <p id="currentWind">Wind: Wind MPG retrieved from API</p>
+        </div>
+        <div class="row">
+          <p id="currentHumidity">Humidity: Humidity % retrieved from API</p>
+        </div>
+        <div class="row">
+          <p id="currentUV">UV Index: UV Index retrieved from API</p>
+        </div>
+      </article>
+      <article class="row">
+        <h6 class="card-body">5-Day Forecast:</h6>
+        <div class="row">
+          <div class="col card">
+            <div class="forecastDate">00/00/0000</div>
+            <div class="forecastIcon">(Icon)</div>
+            <div class="forecastTemp">Temp: 00&#xb0; F</div>
+            <div class="forecastWind">Wind: 00 MPH</div>
+            <div class="forecastHumidity">Humidity: 00%</div>
+          </div>
+          <div class="col card">
+            <div class="forecastDate">00/00/0000</div>
+            <div class="forecastIcon">(Icon)</div>
+            <div class="forecastTemp">Temp: 00&#xb0; F</div>
+            <div class="forecastWind">Wind: 00 MPH</div>
+            <div class="forecastHumidity">Humidity: 00%</div>
+          </div>
+          <div class="col card">
+            <div class="forecastDate">00/00/0000</div>
+            <div class="forecastIcon">(Icon)</div>
+            <div class="forecastTemp">Temp: 00&#xb0; F</div>
+            <div class="forecastWind">Wind: 00 MPH</div>
+            <div class="forecastHumidity">Humidity: 00%</div>
+          </div>
+          <div class="col card">
+            <div class="forecastDate">00/00/0000</div>
+            <div class="forecastIcon">(Icon)</div>
+            <div class="forecastTemp">Temp: 00&#xb0; F</div>
+            <div class="forecastWind">Wind: 00 MPH</div>
+            <div class="forecastHumidity">Humidity: 00%</div>
+          </div>
+          <div class="col card">
+            <div class="forecastDate">00/00/0000</div>
+            <div class="forecastIcon">(Icon)</div>
+            <div class="forecastTemp">Temp: 00&#xb0; F</div>
+            <div class="forecastWind">Wind: 00 MPH</div>
+            <div class="forecastHumidity">Humidity: 100%</div>
+          </div>
+        </div>
+      </article>
     </section>
   </main>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

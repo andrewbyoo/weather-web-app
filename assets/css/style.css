@@ -46,3 +46,24 @@ h4 {
 #weatherDashboard {
   visibility: hidden;
 }
+
+/* UV Colors used were from https://en.wikipedia.org/wiki/Ultraviolet_index */
+.lowUV {
+  background-color: #3ea72d;
+}
+
+.moderateUV {
+  background-color: #fff300;
+}
+
+.highUV {
+  background-color: #f18b00;
+}
+
+.veryHighUV {
+  background-color: #e53210;
+}
+
+.extremeUV {
+  background-color: #b567a4;
+}

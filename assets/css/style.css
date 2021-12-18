@@ -12,3 +12,7 @@ h1 {
   color: #fff;
   text-shadow: 0px 0px 20px #0000ff;
 }
+
+#searchedCity, #currentDate, #currentIcon {
+  display: inline;
+}

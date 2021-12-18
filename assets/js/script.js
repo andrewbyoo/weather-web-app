@@ -29,13 +29,15 @@ function getApi() {
     .then(function (geocodeData) {
       var latitude = geocodeData.results[0].locations[0].latLng.lat
       var longitude = geocodeData.results[0].locations[0].latLng.lng
-      var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&appid=' + oneCallAPI;
+      var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&units=imperial&appid=' + oneCallAPI;
 
       fetch(requestUrl)
         .then(function (requestResponse) {
           return requestResponse.json();
         })
         .then(function (requestData) {
+          console.log(requestData)
+          var currentTemp = requestData.current.weather[0].main
           var currentWeatherIcon = requestData.current.weather[0].main
         })
     })

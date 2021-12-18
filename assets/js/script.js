@@ -1,7 +1,9 @@
 // Global variables
 var searchInput = document.getElementById('searchInput');
 var searchBtn = document.getElementById('searchBtn');
+var weatherDashboard = document.getElementById('weatherDashboard');
 var searchedCity = document.getElementById('searchedCity');
+var currentDate = document.getElementById('currentDate');
 var currentIcon = document.getElementById('currentIcon');
 var currentTemp = document.getElementById('currentTemp');
 var currentWind = document.getElementById('currentWind');
@@ -52,19 +54,27 @@ function getApi() {
           convertedDate = moment.unix(unixDate).format('M/D/YYYY')
           var currentWeatherIconCode = requestData.current.weather[0].icon
           var currentWeatherIcon = 'http://openweathermap.org/img/w/' + currentWeatherIconCode + '.png';
-          var currentTemp = requestData.current.temp
-          var currentWind = requestData.current.wind_speed
-          var currentHumidity = requestData.current.humidity
+          var currentTempOutput = requestData.current.temp
+          var currentWindOutput = requestData.current.wind_speed
+          var currentHumidityOutput = requestData.current.humidity
           var uvIndex = requestData.current.uvi
 
           console.log(unixDate)
           console.log(convertedDate)
           console.log(currentWeatherIconCode + ' currentWeather')
           console.log(currentWeatherIcon + ' currentWeather')
-          console.log(currentTemp + ' currentWeather')
-          console.log(currentWind + ' currentWeather')
-          console.log(currentHumidity + ' currentWeather')
+          console.log(currentTempOutput + ' currentWeather')
+          console.log(currentWindOutput + ' currentWeather')
+          console.log(currentHumidityOutput + ' currentWeather')
           console.log(uvIndex + ' currentWeather')
+
+          searchedCity.innerHTML = searchInput.value;
+          currentDate.innerHTML = convertedDate;
+          currentIcon.setAttribute('src', 'http://openweathermap.org/img/w/' + currentWeatherIconCode + '.png')
+          currentTemp.innerHTML = 'Temp: ' + currentTempOutput + '&#xb0; F';
+          currentWind.innerHTML = 'Wind: ' + currentWindOutput + ' MPH';
+          currentHumidity.innerHTML = 'Humidity: ' + currentHumidityOutput + '%';
+          currentUV.innerHTML = uvIndex;
 
           // One Call API forecast gives the current date for the first forecast date if it is before 4PM, condition needed to get the correct forecast dates
           // Sets variable j for if it is before or after 4PM
@@ -87,18 +97,19 @@ function getApi() {
             convertedDate = moment.unix(unixDate).format('M/D/YYYY')
             var forecastWeatherIconCode = requestData.daily[i].weather[0].icon
             var forecastWeatherIcon = 'http://openweathermap.org/img/w/' + forecastWeatherIconCode + '.png';
-            var forecastTemp = requestData.daily[i].temp.day
-            var forecastWind = requestData.daily[i].wind_speed
-            var forecastHumidity = requestData.daily[i].humidity
+            var forecastTempOutput = requestData.daily[i].temp.day
+            var forecastWindOutput = requestData.daily[i].wind_speed
+            var forecastHumidityOutput = requestData.daily[i].humidity
 
             console.log(unixDate)
             console.log(convertedDate)
             console.log(forecastWeatherIconCode + ' forecast' + i)
             console.log(forecastWeatherIcon + ' forecast' + i)
-            console.log(forecastTemp + ' forecast' + i)
-            console.log(forecastWind + ' forecast' + i)
-            console.log(forecastHumidity + ' forecast' + i)
+            console.log(forecastTempOutput + ' forecast' + i)
+            console.log(forecastWindOutput + ' forecast' + i)
+            console.log(forecastHumidityOutput + ' forecast' + i)
           }
+          weatherDashboard.style.visibility = 'visible';
         })
     })
 }

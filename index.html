@@ -22,7 +22,7 @@
         <form class="card-body">
           <p>Spot for search and search history</p>
           <input name="searchInput" type="text" autofocus="true" placeholder="Search" id="searchInput"/>
-          <button type="submit" class="btn btn-primary">Search</button>
+          <button type="submit" class="btn btn-primary" id="searchBtn">Search</button>
         </form>
       </div>
     </div>
@@ -31,61 +31,59 @@
       <div>
         <div class="card-body">
           <article class="col">
-            <h4>City name searched</h4>
+            <h4 id="searchedCity">City name searched</h4>
+            <div id="currentDate">(Current Date)</div>
+            <i id="currentIcon">Current date weather icon</i>
             <div class="row">
-              <p class="col-2">Temp: </p>
-              <p class="col-10">Temp retrieved from API</p>
+              <p id="currentTemp">Temp: Temp retrieved from API</p>
             </div>
             <div class="row">
-              <p class="col-2">Wind: </p>
-              <p class="col-10">Wind MPG retrieved from API</p>
+              <p id="currentWind">Wind: Wind MPG retrieved from API</p>
             </div>
             <div class="row">
-              <p class="col-2">Humidity: </p>
-              <p class="col-10">Humidity % retrieved from API</p>
+              <p id="currentHumidity">Humidity: Humidity % retrieved from API</p>
             </div>
             <div class="row">
-              <p class="col-2">UV Index: </p>
-              <p class="col-10">UV Index retrieved from API</p>
+              <p id="currentUV">UV Index: UV Index retrieved from API</p>
             </div>
           </article>
           <article class="row">
             <h6 class="row">5-Day Forecast:</h6>
             <div class="row">
               <div class="col">
-                <div>1 day in future</div>
-                <div>Icon of predicted weather</div>
-                <div>Temp: predicted temp</div>
-                <div>Wind: predicted windspeed</div>
-                <div>Humidity: predicted humidity</div>
+                <div class="forecastDate">1 day in future</div>
+                <div class="forecastIcon">Icon of predicted weather</div>
+                <div class="forecastTemp">Temp: predicted temp</div>
+                <div class="forecastWind">Wind: predicted windspeed</div>
+                <div class="forecastHumidity">Humidity: predicted humidity</div>
               </div>
               <div class="col">
-                <div>2 day in future</div>
-                <div>Icon of predicted weather</div>
-                <div>Temp: predicted temp</div>
-                <div>Wind: predicted windspeed</div>
-                <div>Humidity: predicted humidity</div>
+                <div class="forecastDate">2 day in future</div>
+                <div class="forecastIcon">Icon of predicted weather</div>
+                <div class="forecastTemp">Temp: predicted temp</div>
+                <div class="forecastWind">Wind: predicted windspeed</div>
+                <div class="forecastHumidity">Humidity: predicted humidity</div>
               </div>
               <div class="col">
-                <div>3 day in future</div>
-                <div>Icon of predicted weather</div>
-                <div>Temp: predicted temp</div>
-                <div>Wind: predicted windspeed</div>
-                <div>Humidity: predicted humidity</div>
+                <div class="forecastDate">3 day in future</div>
+                <div class="forecastIcon">Icon of predicted weather</div>
+                <div class="forecastTemp">Temp: predicted temp</div>
+                <div class="forecastWind">Wind: predicted windspeed</div>
+                <div class="forecastHumidity">Humidity: predicted humidity</div>
               </div>
               <div class="col">
-                <div>4 day in future</div>
-                <div>Icon of predicted weather</div>
-                <div>Temp: predicted temp</div>
-                <div>Wind: predicted windspeed</div>
-                <div>Humidity: predicted humidity</div>
+                <div class="forecastDate">4 day in future</div>
+                <div class="forecastIcon">Icon of predicted weather</div>
+                <div class="forecastTemp">Temp: predicted temp</div>
+                <div class="forecastWind">Wind: predicted windspeed</div>
+                <div class="forecastHumidity">Humidity: predicted humidity</div>
               </div>
               <div class="col">
-                <div>5 day in future</div>
-                <div>Icon of predicted weather</div>
-                <div>Temp: predicted temp</div>
-                <div>Wind: predicted windspeed</div>
-                <div>Humidity: predicted humidity</div>
+                <div class="forecastDate">5 day in future</div>
+                <div class="forecastIcon">Icon of predicted weather</div>
+                <div class="forecastTemp">Temp: predicted temp</div>
+                <div class="forecastWind">Wind: predicted windspeed</div>
+                <div class="forecastHumidity">Humidity: predicted humidity</div>
               </div>
             </div>
           </article>

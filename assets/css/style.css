@@ -19,7 +19,7 @@ h1 {
   margin: 1px;
 }
 
-#searchInput, #searchBtn {
+#searchInput, button {
   width: 100%;
   margin-bottom: 5px;
 }
@@ -69,4 +69,21 @@ h4 {
 .extremeUV {
   background-color: #b567a4;
   color: #fff;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: -16px;
+}
+
+#searchedCity {
+  min-width: 300px;
+}
+
+#currentDate {
+  min-width: 140px;
+}
+
+h6 {
+  margin-bottom: -10px;
 }

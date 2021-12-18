@@ -22,18 +22,16 @@
         <h4>Search for a city:</h4>
         <input name="searchInput" type="text" autofocus="true" placeholder="Search" id="searchInput"/>
         <button type="submit" class="btn btn-primary " id="searchBtn">Search</button>
-          <hr>
-      </form>
-      <div class="card-body">
+        <hr>
         <ul class="list-unstyled"></ul>
-      </div>
+      </form>
     </div>
 
-    <section class="col-12 col-md-9">
+    <section class="col-12 col-md-9" id="weatherDashboard">
       <article class="row" id="currentWeather">
         <h4 class="card-body" id="searchedCity">City name searched</h4>
         <div id="currentDate">(Current Date)</div>
-        <i id="currentIcon">Current date weather icon</i>
+        <img src="" alt="Weather Icon" id="currentIcon">
         <div class="row">
           <p id="currentTemp">Temp: Temp retrieved from API</p>
         </div>
@@ -44,7 +42,7 @@
           <p id="currentHumidity">Humidity: Humidity % retrieved from API</p>
         </div>
         <div class="row">
-          <p id="currentUV">UV Index: UV Index retrieved from API</p>
+          <p>UV Index: <span id="currentUV">UV Index retrieved from API</span></p>
         </div>
       </article>
       <article class="row">

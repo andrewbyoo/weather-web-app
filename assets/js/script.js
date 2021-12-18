@@ -1,3 +1,4 @@
+// Global variables
 var searchInput = document.getElementById('searchInput');
 var searchBtn = document.getElementById('searchBtn');
 var searchedCity = document.getElementById('searchedCity');
@@ -13,28 +14,37 @@ var forecastWind = document.getElementsByClassName('forecastWind');
 var forecastHumidity = document.getElementsByClassName('forecastHumidity');
 var geocodingAPI = 'JIAm99s7cv9HGwGfe0zIAg3ZEQBLSobn'
 var oneCallAPI = 'ef5e2549b8aa888c5f64f0c4c89090d6';
+var unix;
 
+// Search button for the city input
 searchBtn.addEventListener('click', function (event) {
   event.preventDefault();
   getApi();
 })
 
+// Function to get the latitude and longitude of city searched
 function getApi() {
   var geocodingUrl = 'http://www.mapquestapi.com/geocoding/v1/address?key=' + geocodingAPI + '&location=' + searchInput.value;
 
+  // Fetches information from mapquest's api
   fetch(geocodingUrl)
     .then(function (geocodeResponse) {
       return geocodeResponse.json();
     })
+
+    // Function using the retrieved latitude and longitude to retrieve weather data
     .then(function (geocodeData) {
       var latitude = geocodeData.results[0].locations[0].latLng.lat
       var longitude = geocodeData.results[0].locations[0].latLng.lng
       var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&units=imperial&appid=' + oneCallAPI;
 
+      // Fetches information from the One Call API
       fetch(requestUrl)
         .then(function (requestResponse) {
           return requestResponse.json();
         })
+
+        // Function that retrieves specific data for the current date as well as the next 5 days
         .then(function (requestData) {
           console.log(requestData)
           var currentWeatherIconCode = requestData.current.weather[0].icon
@@ -51,13 +61,30 @@ function getApi() {
           console.log(currentHumidity + ' currentWeather')
           console.log(uvIndex + ' currentWeather')
 
-          for (var i = 0; i < 5; i++) {
+          // One Call API forecast gives the same date for the first forecast date if it is before 4PM, condition needed to get the correct forecast dates
+          // Sets variable j for if it is before or after 4PM
+          if (parseInt(moment().format("H")) < 16) {
+            var j = 1;
+          } else {
+            var j = 0;
+          };
+
+          // Sets variable k for if it is before or after 4PM
+          if (parseInt(moment().format("H")) < 16) {
+            var k = 6;
+          } else {
+            var k = 5;
+          };
+
+          // For loop to retrieve specific data for the 5 day forecast
+          for (var i = j; i < k; i++) {
             var forecastWeatherIconCode = requestData.daily[i].weather[0].icon
             var forecastWeatherIcon = 'http://openweathermap.org/img/w/' + forecastWeatherIconCode + '.png';
             var forecastTemp = requestData.daily[i].temp.day
             var forecastWind = requestData.daily[i].wind_speed
             var forecastHumidity = requestData.daily[i].humidity
 
+            console.log(requestData.daily[i].dt)
             console.log(forecastWeatherIconCode + ' forecast' + i)
             console.log(forecastWeatherIcon + ' forecast' + i)
             console.log(forecastTemp + ' forecast' + i)

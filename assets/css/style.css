@@ -27,3 +27,22 @@ h1 {
 #currentWeather {
   padding: .25em;
 }
+
+img {
+  height: 50px !important;
+  width: auto !important;
+}
+
+h4 {
+  text-transform: capitalize;
+}
+
+#currentUV {
+  border: 1px solid #000000;
+  border-radius: 1rem;
+  padding: 5px;
+}
+
+#weatherDashboard {
+  visibility: hidden;
+}

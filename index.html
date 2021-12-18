@@ -17,74 +17,73 @@
 <body>
   <main class="row">
 
-    <div class="col-12 col-md-3">
+    <aside class="col-12 col-md-3">
       <form class="card-body">
         <h4>Search for a city:</h4>
         <input name="searchInput" type="text" autofocus="true" placeholder="Search" id="searchInput"/>
         <button type="submit" class="btn btn-primary " id="searchBtn">Search</button>
         <hr>
-        <ul class="list-unstyled"></ul>
       </form>
-    </div>
+      <section class="card-body">
+        <ul class="list-unstyled">
+          <!-- Placeholder, delete button once js is set up to add button for search history -->
+          <button type="submit" class="btn btn-primary">Placeholder</button>
+        </ul>
+      </section>
+    </aside>
 
     <section class="col-12 col-md-9" id="weatherDashboard">
       <article class="row" id="currentWeather">
-        <h4 class="card-body" id="searchedCity">City name searched</h4>
-        <div id="currentDate">(Current Date)</div>
-        <img src="" alt="Weather Icon" id="currentIcon">
-        <div class="row">
-          <p id="currentTemp">Temp: Temp retrieved from API</p>
-        </div>
-        <div class="row">
-          <p id="currentWind">Wind: Wind MPG retrieved from API</p>
-        </div>
-        <div class="row">
-          <p id="currentHumidity">Humidity: Humidity % retrieved from API</p>
-        </div>
-        <div class="row">
-          <p>UV Index: <span class="" id="currentUV">UV Index retrieved from API</span></p>
-        </div>
+        <article class="row">
+          <h4 class="col-6" id="searchedCity">City name searched</h4>
+          <p class="col-3" id="currentDate">(00/00/0000)</p>
+          <img class="col-3" src="" alt="Weather Icon" id="currentIcon">
+        </article>
+        <p id="currentTemp">Temp: Temp retrieved from API</p>
+        <p id="currentWind">Wind: Wind MPG retrieved from API</p>
+        <p id="currentHumidity">Humidity: Humidity % retrieved from API</p>
+        <p>UV Index: <span class="" id="currentUV">UV Index retrieved from API</span></p>
       </article>
-      <article class="row">
+      <section class="row">
         <h6 class="card-body">5-Day Forecast:</h6>
-        <div class="row">
-          <div class="col card">
-            <div class="forecastDate">00/00/0000</div>
-            <div class="forecastIcon">(Icon)</div>
-            <div class="forecastTemp">Temp: 00&#xb0; F</div>
-            <div class="forecastWind">Wind: 00 MPH</div>
-            <div class="forecastHumidity">Humidity: 00%</div>
-          </div>
-          <div class="col card">
-            <div class="forecastDate">00/00/0000</div>
-            <div class="forecastIcon">(Icon)</div>
-            <div class="forecastTemp">Temp: 00&#xb0; F</div>
-            <div class="forecastWind">Wind: 00 MPH</div>
-            <div class="forecastHumidity">Humidity: 00%</div>
-          </div>
-          <div class="col card">
-            <div class="forecastDate">00/00/0000</div>
-            <div class="forecastIcon">(Icon)</div>
-            <div class="forecastTemp">Temp: 00&#xb0; F</div>
-            <div class="forecastWind">Wind: 00 MPH</div>
-            <div class="forecastHumidity">Humidity: 00%</div>
-          </div>
-          <div class="col card">
-            <div class="forecastDate">00/00/0000</div>
-            <div class="forecastIcon">(Icon)</div>
-            <div class="forecastTemp">Temp: 00&#xb0; F</div>
-            <div class="forecastWind">Wind: 00 MPH</div>
-            <div class="forecastHumidity">Humidity: 00%</div>
-          </div>
-          <div class="col card">
-            <div class="forecastDate">00/00/0000</div>
-            <div class="forecastIcon">(Icon)</div>
-            <div class="forecastTemp">Temp: 00&#xb0; F</div>
-            <div class="forecastWind">Wind: 00 MPH</div>
-            <div class="forecastHumidity">Humidity: 100%</div>
-          </div>
-        </div>
-      </article>
+        <article class="row">
+          <article class="col card">
+            <p class="forecastDate">00/00/0000</p>
+            <p class="forecastIcon">(Icon)</p>
+            <p class="forecastTemp">Temp: 00&#xb0; F</p>
+            <p class="forecastWind">Wind: 00 MPH</p>
+            <p class="forecastHumidity">Humidity: 00%</p>
+          </article>
+          <article class="col card">
+            <p class="forecastDate">00/00/0000</p>
+            <p class="forecastIcon">(Icon)</p>
+            <p class="forecastTemp">Temp: 00&#xb0; F</p>
+            <p class="forecastWind">Wind: 00 MPH</p>
+            <p class="forecastHumidity">Humidity: 00%</p>
+          </article>
+          <article class="col card">
+            <p class="forecastDate">00/00/0000</p>
+            <p class="forecastIcon">(Icon)</p>
+            <p class="forecastTemp">Temp: 00&#xb0; F</p>
+            <p class="forecastWind">Wind: 00 MPH</p>
+            <p class="forecastHumidity">Humidity: 00%</p>
+          </article>
+          <article class="col card">
+            <p class="forecastDate">00/00/0000</p>
+            <p class="forecastIcon">(Icon)</p>
+            <p class="forecastTemp">Temp: 00&#xb0; F</p>
+            <p class="forecastWind">Wind: 00 MPH</p>
+            <p class="forecastHumidity">Humidity: 00%</p>
+          </article>
+          <article class="col card">
+            <p class="forecastDate">00/00/0000</p>
+            <p class="forecastIcon">(Icon)</p>
+            <p class="forecastTemp">Temp: 00&#xb0; F</p>
+            <p class="forecastWind">Wind: 00 MPH</p>
+            <p class="forecastHumidity">Humidity: 100%</p>
+          </article>
+        </article>
+      </section>
     </section>
   </main>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

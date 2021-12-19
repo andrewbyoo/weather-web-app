@@ -88,13 +88,6 @@ function getApi() {
             var forecastWindOutput = requestData.daily[i].wind_speed;
             var forecastHumidityOutput = requestData.daily[i].humidity;
 
-            console.log(unixDate)
-            console.log(convertedDate)
-            console.log(forecastWeatherIconCode + ' forecast' + i)
-            console.log(forecastTempOutput + ' forecast' + i)
-            console.log(forecastWindOutput + ' forecast' + i)
-            console.log(forecastHumidityOutput + ' forecast' + i)
-
             forecastDate[i-1].innerHTML = convertedDate;
             forecastIcon[i-1].setAttribute('src', 'http://openweathermap.org/img/w/' + forecastWeatherIconCode + '.png');
             forecastTemp[i-1].innerHTML = 'Temp: ' + forecastTempOutput + '&#xb0; F';
@@ -103,5 +96,16 @@ function getApi() {
           }
           weatherDashboard.style.visibility = 'visible';
         })
+
+        .then(function () {
+          var dashboardEl = weatherDashboard.innerHTML
+          localStorage.setItem('searchInput', dashboardEl)
+        })
     })
 }
+
+// Test Code for retrieving local storage and setting it to page
+// function getApi() {
+//   weatherDashboard.innerHTML = localStorage.getItem('searchInput')
+//   weatherDashboard.style.visibility = 'visible';
+// }

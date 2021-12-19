@@ -95,6 +95,11 @@ function getApi() {
             console.log(forecastWindOutput + ' forecast' + i)
             console.log(forecastHumidityOutput + ' forecast' + i)
 
+            forecastDate[i-1].innerHTML = convertedDate;
+            forecastIcon[i-1].setAttribute('src', 'http://openweathermap.org/img/w/' + forecastWeatherIconCode + '.png');
+            forecastTemp[i-1].innerHTML = 'Temp: ' + forecastTempOutput + '&#xb0; F';
+            forecastWind[i-1].innerHTML = 'Wind: ' + forecastWindOutput + ' MPH';
+            forecastHumidity[i-1].innerHTML = 'Humidity: ' + forecastHumidityOutput + '%';
           }
           weatherDashboard.style.visibility = 'visible';
         })

@@ -170,7 +170,7 @@ function getApi() {
   };
 };
 
-// when a historical button is pressed, runs function to recall the snapshot of the weather forecast exactly as it was when the city was previously searched
+// when a historical button is pressed, runs function to set the value of the search bar to the history button's value and clicks the search button to call new weather data
 function reply_click(clicked_id){
   var recallId = document.getElementById(clicked_id);
   searchInput.value = recallId.innerHTML;

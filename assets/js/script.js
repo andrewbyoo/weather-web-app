@@ -21,18 +21,21 @@ var convertedDate;
 var historicLocalStorage = localStorage.getItem('historicalSearch');
 var lastSearchStorage = localStorage.getItem('lastSearch');
 
-if (historicLocalStorage == null) {
-  console.log('No historic data');
-} else {
-  historicalSearch.innerHTML = historicLocalStorage;
-};
+document.addEventListener('DOMContentLoaded', function() {
+  if (historicLocalStorage == null) {
+    console.log('No historic data');
+  } else {
+    historicalSearch.innerHTML = historicLocalStorage;
+  };
 
-if (lastSearchStorage == null) {
-  console.log('No saved dashboards');
-} else {
-  weatherDashboard.innerHTML = lastSearchStorage;
-  weatherDashboard.style.visibility = 'visible';
-};
+  if (lastSearchStorage == null) {
+    console.log('No saved dashboards');
+  } else {
+    var lastSearch = historicalSearch.children[0].innerHTML;
+    searchInput.value = lastSearch;
+    searchBtn.click();
+  };
+})
 
 // Search button for the city input
 searchBtn.addEventListener('click', function (event) {

@@ -19,6 +19,13 @@ var geocodingAPI = 'JIAm99s7cv9HGwGfe0zIAg3ZEQBLSobn';
 var oneCallAPI = 'ef5e2549b8aa888c5f64f0c4c89090d6';
 var unixDate;
 var convertedDate;
+var historicLocalStorage = localStorage.getItem('historicalSearch');
+
+if (historicLocalStorage == null) {
+  console.log('No historic data')
+} else {
+  historicalSearch.innerHTML = historicLocalStorage
+}
 
 // Search button for the city input
 searchBtn.addEventListener('click', function (event) {
@@ -110,7 +117,8 @@ function getApi() {
         // Function for adding the searched city to the historical search button list
         .then(function() {
           var historicalSearchEl = document.createElement('button');
-          var checkEl = document.getElementById(searchInput.value.toLowerCase());
+          var removedSpacesId = searchInput.value.toLowerCase().replace(/\s+/g, '')
+          var checkEl = document.getElementById(removedSpacesId);
 
           // Checks if an id exists already for new searched city and if it returns null (non-existent), continues with the function
           if (checkEl == null) {
@@ -120,9 +128,9 @@ function getApi() {
               historicalSearch.prepend(historicalSearchEl);
               historicalSearch.firstChild.type = 'button';
               historicalSearch.firstChild.className = 'btn btn-primary';
-              historicalSearch.firstChild.id = searchInput.value.toLowerCase();
+              historicalSearch.firstChild.id = removedSpacesId;
               historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
-              localStorage.setItem('historicalSearch', historicalSearch);
+              localStorage.setItem('historicalSearch', historicalSearch.innerHTML);
             }
 
             // If there are 7 existing buttons, removes the oldest (last) button and adds new button at the top of the list for the searched city
@@ -131,9 +139,9 @@ function getApi() {
               historicalSearch.prepend(historicalSearchEl);
               historicalSearch.firstChild.type = 'button';
               historicalSearch.firstChild.className = 'btn btn-primary';
-              historicalSearch.firstChild.id = searchInput.value.toLowerCase();
+              historicalSearch.firstChild.id = removedSpacesId;
               historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
-              localStorage.setItem('historicalSearch', historicalSearch);
+              localStorage.setItem('historicalSearch', historicalSearch.innerHTML);
             };
           }
 
@@ -143,11 +151,10 @@ function getApi() {
             historicalSearch.prepend(historicalSearchEl);
             historicalSearch.firstChild.type = 'button';
             historicalSearch.firstChild.className = 'btn btn-primary';
-            historicalSearch.firstChild.id = searchInput.value.toLowerCase();
+            historicalSearch.firstChild.id = removedSpacesId;
             historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
-            localStorage.setItem('historicalSearch', historicalSearch);
-          }
-
+            localStorage.setItem('historicalSearch', historicalSearch.innerHTML);
+          };
         });
     });
 };

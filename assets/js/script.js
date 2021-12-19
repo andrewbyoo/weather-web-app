@@ -25,13 +25,13 @@ if (historicLocalStorage == null) {
   console.log('No historic data')
 } else {
   historicalSearch.innerHTML = historicLocalStorage
-}
+};
 
 // Search button for the city input
 searchBtn.addEventListener('click', function (event) {
   event.preventDefault();
   getApi();
-})
+});
 
 // Function to get the latitude and longitude of city searched
 function getApi() {
@@ -132,6 +132,7 @@ function getApi() {
                 historicalSearch.firstChild.type = 'button';
                 historicalSearch.firstChild.className = 'btn btn-primary';
                 historicalSearch.firstChild.id = removedSpacesId;
+                historicalSearch.firstChild.setAttribute('onClick', 'reply_click(this.id)');
                 historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
                 localStorage.setItem('historicalSearch', historicalSearch.innerHTML);
               }
@@ -143,6 +144,7 @@ function getApi() {
                 historicalSearch.firstChild.type = 'button';
                 historicalSearch.firstChild.className = 'btn btn-primary';
                 historicalSearch.firstChild.id = removedSpacesId;
+                historicalSearch.firstChild.setAttribute('onClick', 'reply_click(this.id)');
                 historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
                 localStorage.setItem('historicalSearch', historicalSearch.innerHTML);
               };
@@ -155,6 +157,7 @@ function getApi() {
               historicalSearch.firstChild.type = 'button';
               historicalSearch.firstChild.className = 'btn btn-primary';
               historicalSearch.firstChild.id = removedSpacesId;
+              historicalSearch.firstChild.setAttribute('onClick', 'reply_click(this.id)');
               historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
               localStorage.setItem('historicalSearch', historicalSearch.innerHTML);
             };
@@ -163,8 +166,10 @@ function getApi() {
   };
 };
 
-// Test Code for retrieving local storage and setting it to page
-// function getApi() {
-//   weatherDashboard.innerHTML = localStorage.getItem(searchInput.value)
-//   weatherDashboard.style.visibility = 'visible';
-// }
+// when a historical button is pressed, runs function to recall the snapshot of the weather forecast exactly as it was when the city was previously searched
+function reply_click(clicked_id){
+  var recallId = document.getElementById(clicked_id)
+  var recallHistoricalSearch = localStorage.getItem(recallId.innerHTML)
+  weatherDashboard.innerHTML = recallHistoricalSearch
+  weatherDashboard.style.visibility = 'visible';
+}

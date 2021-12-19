@@ -38,7 +38,7 @@ function getApi() {
   if (searchInput.value == "") {
     console.log('No search performed')
   } else {
-    var geocodingUrl = 'http://www.mapquestapi.com/geocoding/v1/address?key=' + geocodingAPI + '&location=' + searchInput.value;
+    var geocodingUrl = 'https://www.mapquestapi.com/geocoding/v1/address?key=' + geocodingAPI + '&location=' + searchInput.value;
 
     // Fetches information from mapquest's api
     fetch(geocodingUrl)

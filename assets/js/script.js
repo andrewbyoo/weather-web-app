@@ -1,5 +1,5 @@
 // Global variables
-var searchInput = document.getElementById('searchInput')
+var searchInput = document.getElementById('searchInput');
 var searchBtn = document.getElementById('searchBtn');
 var historicalSearch = document.getElementById('historicalSearch');
 var weatherDashboard = document.getElementById('weatherDashboard');
@@ -107,26 +107,45 @@ function getApi() {
           localStorage.setItem(searchInput.value.toLowerCase(), dashboardEl);
         })
 
-        //
+        // Function for adding the searched city to the historical search button list
         .then(function() {
           var historicalSearchEl = document.createElement('button');
           var checkEl = document.getElementById(searchInput.value.toLowerCase());
 
+          // Checks if an id exists already for new searched city and if it returns null (non-existent), continues with the function
           if (checkEl == null) {
-            if (historicalSearch.children.length > 5) {
+
+            // If there are less than 7 existing buttons, adds new button at the top of the list for the searched city
+            if (historicalSearch.children.length < 7) {
               historicalSearch.prepend(historicalSearchEl);
               historicalSearch.firstChild.type = 'button';
               historicalSearch.firstChild.className = 'btn btn-primary';
               historicalSearch.firstChild.id = searchInput.value.toLowerCase();
               historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
-            } else {
+              localStorage.setItem('historicalSearch', historicalSearch);
+            }
+
+            // If there are 7 existing buttons, removes the oldest (last) button and adds new button at the top of the list for the searched city
+            else {
               historicalSearch.removeChild(historicalSearch.lastChild);
               historicalSearch.prepend(historicalSearchEl);
               historicalSearch.firstChild.type = 'button';
               historicalSearch.firstChild.className = 'btn btn-primary';
               historicalSearch.firstChild.id = searchInput.value.toLowerCase();
               historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
-            }
+              localStorage.setItem('historicalSearch', historicalSearch);
+            };
+          }
+
+          // If the check returns true (id does exist), removes the element the id exists on and adds the new search to the top of the list
+          else {
+            checkEl.remove();
+            historicalSearch.prepend(historicalSearchEl);
+            historicalSearch.firstChild.type = 'button';
+            historicalSearch.firstChild.className = 'btn btn-primary';
+            historicalSearch.firstChild.id = searchInput.value.toLowerCase();
+            historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
+            localStorage.setItem('historicalSearch', historicalSearch);
           }
 
         });

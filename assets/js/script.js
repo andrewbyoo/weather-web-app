@@ -19,11 +19,19 @@ var oneCallAPI = 'ef5e2549b8aa888c5f64f0c4c89090d6';
 var unixDate;
 var convertedDate;
 var historicLocalStorage = localStorage.getItem('historicalSearch');
+var lastSearchStorage = localStorage.getItem('lastSearch');
 
 if (historicLocalStorage == null) {
-  console.log('No historic data')
+  console.log('No historic data');
 } else {
-  historicalSearch.innerHTML = historicLocalStorage
+  historicalSearch.innerHTML = historicLocalStorage;
+};
+
+if (lastSearchStorage == null) {
+  console.log('No saved dashboards');
+} else {
+  weatherDashboard.innerHTML = lastSearchStorage;
+  weatherDashboard.style.visibility = 'visible';
 };
 
 // Search button for the city input
@@ -35,7 +43,7 @@ searchBtn.addEventListener('click', function (event) {
 // Function to get the latitude and longitude of city searched
 function getApi() {
   if (searchInput.value == "") {
-    console.log('No search performed')
+    console.log('No search performed');
   } else {
     var geocodingUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchInput.value + '&appid=' + oneCallAPI;
 
@@ -47,8 +55,8 @@ function getApi() {
 
       // Function using the retrieved latitude and longitude to retrieve weather data
       .then(function (geocodeData) {
-        var latitude = geocodeData[0].lat
-        var longitude = geocodeData[0].lon
+        var latitude = geocodeData[0].lat;
+        var longitude = geocodeData[0].lon;
         var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&units=imperial&appid=' + oneCallAPI;
 
         // Fetches information from the One Call API
@@ -70,7 +78,7 @@ function getApi() {
             // Outputs all data variables to the HTML
             searchedCity.innerHTML = searchInput.value.toLowerCase();
             currentDate.innerHTML = '(' + convertedDate + ')';
-            currentIcon.setAttribute('src', 'http://openweathermap.org/img/w/' + currentWeatherIconCode + '.png')
+            currentIcon.setAttribute('src', 'http://openweathermap.org/img/w/' + currentWeatherIconCode + '.png');
             currentTemp.innerHTML = 'Temp: ' + currentTempOutput + ' &#xb0;F';
             currentWind.innerHTML = 'Wind: ' + currentWindOutput + ' MPH';
             currentHumidity.innerHTML = 'Humidity: ' + currentHumidityOutput + ' %';
@@ -119,7 +127,7 @@ function getApi() {
           // Function for adding the searched city to the historical search button list
           .then(function () {
             var historicalSearchEl = document.createElement('button');
-            var removedSpacesId = searchInput.value.toLowerCase().replace(/\s+/g, '')
+            var removedSpacesId = searchInput.value.toLowerCase().replace(/\s+/g, '');
             var checkEl = document.getElementById(removedSpacesId);
 
             // Checks if an id exists already for new searched city and if it returns null (non-existent), continues with the function
@@ -133,7 +141,6 @@ function getApi() {
                 historicalSearch.firstChild.id = removedSpacesId;
                 historicalSearch.firstChild.setAttribute('onClick', 'reply_click(this.id)');
                 historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
-                localStorage.setItem('historicalSearch', historicalSearch.innerHTML);
               }
 
               // If there are 7 existing buttons, removes the oldest (last) button and adds new button at the top of the list for the searched city
@@ -145,7 +152,6 @@ function getApi() {
                 historicalSearch.firstChild.id = removedSpacesId;
                 historicalSearch.firstChild.setAttribute('onClick', 'reply_click(this.id)');
                 historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
-                localStorage.setItem('historicalSearch', historicalSearch.innerHTML);
               };
             }
 
@@ -158,8 +164,10 @@ function getApi() {
               historicalSearch.firstChild.id = removedSpacesId;
               historicalSearch.firstChild.setAttribute('onClick', 'reply_click(this.id)');
               historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
-              localStorage.setItem('historicalSearch', historicalSearch.innerHTML);
             };
+
+            localStorage.setItem('historicalSearch', historicalSearch.innerHTML);
+            localStorage.setItem('lastSearch', weatherDashboard.innerHTML);
 
             // Clears input field after search queries are completed
             searchInput.value = '';
@@ -170,8 +178,9 @@ function getApi() {
 
 // when a historical button is pressed, runs function to recall the snapshot of the weather forecast exactly as it was when the city was previously searched
 function reply_click(clicked_id){
-  var recallId = document.getElementById(clicked_id)
-  var recallHistoricalSearch = localStorage.getItem(recallId.innerHTML)
-  weatherDashboard.innerHTML = recallHistoricalSearch
+  var recallId = document.getElementById(clicked_id);
+  var recallHistoricalSearch = localStorage.getItem(recallId.innerHTML);
+  weatherDashboard.innerHTML = recallHistoricalSearch;
   weatherDashboard.style.visibility = 'visible';
+  localStorage.setItem('lastSearch', weatherDashboard.innerHTML);
 }

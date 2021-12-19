@@ -161,6 +161,9 @@ function getApi() {
               historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
               localStorage.setItem('historicalSearch', historicalSearch.innerHTML);
             };
+
+            // Clears input field after search queries are completed
+            searchInput.value = '';
           });
       });
   };

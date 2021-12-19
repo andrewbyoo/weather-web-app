@@ -25,18 +25,16 @@
         <hr>
       </form>
       <section class="card-body">
-        <ul class="list-unstyled">
-          <!-- Placeholder, delete button once js is set up to add button for search history -->
-          <button type="submit" class="btn btn-primary">Placeholder</button>
-        </ul>
+        <h4>Previous results:</h4>
+        <ul class="list-unstyled" id="historicalSearch"></ul>
       </section>
     </aside>
 
     <section class="col-12 col-md-9" id="weatherDashboard">
       <article class="row" id="currentWeather">
-        <article class="row">
-          <h4 class="col-6" id="searchedCity">City name searched</h4>
-          <p class="col-3" id="currentDate">(00/00/0000)</p>
+        <article class="row align-items-end">
+          <h3 class="col-6" id="searchedCity">City name searched</h3>
+          <h3 class="col-3" id="currentDate">(00/00/0000)</h3>
           <img class="col-3" src="" alt="Weather Icon" id="currentIcon">
         </article>
         <p id="currentTemp">Temp: Temp retrieved from API</p>

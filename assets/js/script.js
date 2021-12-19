@@ -37,7 +37,7 @@ function getApi() {
   if (searchInput.value == "") {
     console.log('No search performed')
   } else {
-    var geocodingUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchInput.value + '&appid=' + oneCallAPI;
+    var geocodingUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + searchInput.value + '&appid=' + oneCallAPI;
 
     // Fetches information from OpenWeather's Geolocation API
     fetch(geocodingUrl)

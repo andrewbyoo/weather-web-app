@@ -1,6 +1,7 @@
 // Global variables
-var searchInput = document.getElementById('searchInput');
+var searchInput = document.getElementById('searchInput')
 var searchBtn = document.getElementById('searchBtn');
+var historicalSearch = document.getElementById('historicalSearch');
 var weatherDashboard = document.getElementById('weatherDashboard');
 var searchedCity = document.getElementById('searchedCity');
 var currentDate = document.getElementById('currentDate');
@@ -14,7 +15,7 @@ var forecastIcon = document.getElementsByClassName('forecastIcon');
 var forecastTemp = document.getElementsByClassName('forecastTemp');
 var forecastWind = document.getElementsByClassName('forecastWind');
 var forecastHumidity = document.getElementsByClassName('forecastHumidity');
-var geocodingAPI = 'JIAm99s7cv9HGwGfe0zIAg3ZEQBLSobn'
+var geocodingAPI = 'JIAm99s7cv9HGwGfe0zIAg3ZEQBLSobn';
 var oneCallAPI = 'ef5e2549b8aa888c5f64f0c4c89090d6';
 var unixDate;
 var convertedDate;
@@ -58,12 +59,12 @@ function getApi() {
           var uvIndex = requestData.current.uvi;
 
           // Outputs all data variables to the HTML
-          searchedCity.innerHTML = searchInput.value;
+          searchedCity.innerHTML = searchInput.value.toLowerCase();
           currentDate.innerHTML = '(' + convertedDate + ')';
           currentIcon.setAttribute('src', 'http://openweathermap.org/img/w/' + currentWeatherIconCode + '.png')
-          currentTemp.innerHTML = 'Temp: ' + currentTempOutput + '&#xb0; F';
+          currentTemp.innerHTML = 'Temp: ' + currentTempOutput + ' &#xb0;F';
           currentWind.innerHTML = 'Wind: ' + currentWindOutput + ' MPH';
-          currentHumidity.innerHTML = 'Humidity: ' + currentHumidityOutput + '%';
+          currentHumidity.innerHTML = 'Humidity: ' + currentHumidityOutput + ' %';
           currentUV.innerHTML = uvIndex;
 
           // Sets class currentUV span element to a specific class depending on what UV index was returned from One Call API
@@ -77,7 +78,7 @@ function getApi() {
             currentUV.setAttribute('class', 'veryHighUV');
           } else {
             currentUV.setAttribute('class', 'extremeUV');
-          }
+          };
 
           // For loop to retrieve specific data for the 5 day forecast
           for (var i = 1; i < 6; i++) {
@@ -88,24 +89,52 @@ function getApi() {
             var forecastWindOutput = requestData.daily[i].wind_speed;
             var forecastHumidityOutput = requestData.daily[i].humidity;
 
+            // Outputs data for each forecast date in their respective cards on the HTML
             forecastDate[i-1].innerHTML = convertedDate;
             forecastIcon[i-1].setAttribute('src', 'http://openweathermap.org/img/w/' + forecastWeatherIconCode + '.png');
-            forecastTemp[i-1].innerHTML = 'Temp: ' + forecastTempOutput + '&#xb0; F';
+            forecastTemp[i-1].innerHTML = 'Temp: ' + forecastTempOutput + ' &#xb0;F';
             forecastWind[i-1].innerHTML = 'Wind: ' + forecastWindOutput + ' MPH';
-            forecastHumidity[i-1].innerHTML = 'Humidity: ' + forecastHumidityOutput + '%';
-          }
+            forecastHumidity[i-1].innerHTML = 'Humidity: ' + forecastHumidityOutput + ' %';
+          };
+
+          // Sets the weather dashboard to visible if it is hidden (new page instance)
           weatherDashboard.style.visibility = 'visible';
         })
 
+        // Saves weather dashboard snapshot for the specific city and the specific time it was searched
         .then(function () {
-          var dashboardEl = weatherDashboard.innerHTML
-          localStorage.setItem('searchInput', dashboardEl)
+          var dashboardEl = weatherDashboard.innerHTML;
+          localStorage.setItem(searchInput.value.toLowerCase(), dashboardEl);
         })
-    })
-}
+
+        //
+        .then(function() {
+          var historicalSearchEl = document.createElement('button');
+          var checkEl = document.getElementById(searchInput.value.toLowerCase());
+
+          if (checkEl == null) {
+            if (historicalSearch.children.length > 5) {
+              historicalSearch.prepend(historicalSearchEl);
+              historicalSearch.firstChild.type = 'button';
+              historicalSearch.firstChild.className = 'btn btn-primary';
+              historicalSearch.firstChild.id = searchInput.value.toLowerCase();
+              historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
+            } else {
+              historicalSearch.removeChild(historicalSearch.lastChild);
+              historicalSearch.prepend(historicalSearchEl);
+              historicalSearch.firstChild.type = 'button';
+              historicalSearch.firstChild.className = 'btn btn-primary';
+              historicalSearch.firstChild.id = searchInput.value.toLowerCase();
+              historicalSearch.firstChild.innerHTML = searchInput.value.toLowerCase();
+            }
+          }
+
+        });
+    });
+};
 
 // Test Code for retrieving local storage and setting it to page
 // function getApi() {
-//   weatherDashboard.innerHTML = localStorage.getItem('searchInput')
+//   weatherDashboard.innerHTML = localStorage.getItem(searchInput.value)
 //   weatherDashboard.style.visibility = 'visible';
 // }

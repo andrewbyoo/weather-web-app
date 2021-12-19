@@ -118,12 +118,6 @@ function getApi() {
             weatherDashboard.style.visibility = 'visible';
           })
 
-          // Saves weather dashboard snapshot for the specific city and the specific time it was searched
-          .then(function () {
-            var dashboardEl = weatherDashboard.innerHTML;
-            localStorage.setItem(searchInput.value.toLowerCase(), dashboardEl);
-          })
-
           // Function for adding the searched city to the historical search button list
           .then(function () {
             var historicalSearchEl = document.createElement('button');
@@ -179,8 +173,6 @@ function getApi() {
 // when a historical button is pressed, runs function to recall the snapshot of the weather forecast exactly as it was when the city was previously searched
 function reply_click(clicked_id){
   var recallId = document.getElementById(clicked_id);
-  var recallHistoricalSearch = localStorage.getItem(recallId.innerHTML);
-  weatherDashboard.innerHTML = recallHistoricalSearch;
-  weatherDashboard.style.visibility = 'visible';
-  localStorage.setItem('lastSearch', weatherDashboard.innerHTML);
+  searchInput.value = recallId.innerHTML;
+  searchBtn.click();
 }

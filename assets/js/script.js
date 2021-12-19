@@ -79,24 +79,8 @@ function getApi() {
             currentUV.setAttribute('class', 'extremeUV');
           }
 
-          // One Call API forecast gives the current date for the first forecast date, condition applied to get the correct forecast dates in case the forecast dates are updated in the API at any given moment
-
-          // Sets variable j for if the first day in the forecast is still the current date
-          if (parseInt(moment().format("H")) < 16) {
-            var j = 1;
-          } else {
-            var j = 0;
-          };
-
-          // Sets variable k for if the first day in the forecast is still the current date
-          if (parseInt(moment().format("H")) < 16) {
-            var k = 6;
-          } else {
-            var k = 5;
-          };
-
           // For loop to retrieve specific data for the 5 day forecast
-          for (var i = j; i < k; i++) {
+          for (var i = 1; i < 6; i++) {
             unixDate = requestData.daily[i].dt;
             convertedDate = moment.unix(unixDate).format('M/D/YYYY');
             var forecastWeatherIconCode = requestData.daily[i].weather[0].icon;
@@ -107,10 +91,10 @@ function getApi() {
             console.log(unixDate)
             console.log(convertedDate)
             console.log(forecastWeatherIconCode + ' forecast' + i)
-            console.log(forecastWeatherIcon + ' forecast' + i)
             console.log(forecastTempOutput + ' forecast' + i)
             console.log(forecastWindOutput + ' forecast' + i)
             console.log(forecastHumidityOutput + ' forecast' + i)
+
           }
           weatherDashboard.style.visibility = 'visible';
         })

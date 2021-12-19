@@ -77,11 +77,11 @@ function getApi() {
           // Sets class currentUV span element to a specific class depending on what UV index was returned from One Call API
           if (uvIndex < 3) {
             currentUV.setAttribute('class', 'lowUV');
-          } else if (uvIndex >= 3  && uvIndex < 6) {
+          } else if (uvIndex >= 3 && uvIndex < 6) {
             currentUV.setAttribute('class', 'moderateUV');
-          } else if (uvIndex >= 6  && uvIndex < 8) {
+          } else if (uvIndex >= 6 && uvIndex < 8) {
             currentUV.setAttribute('class', 'highUV');
-          } else if (uvIndex >= 8  && uvIndex < 11) {
+          } else if (uvIndex >= 8 && uvIndex < 11) {
             currentUV.setAttribute('class', 'veryHighUV');
           } else {
             currentUV.setAttribute('class', 'extremeUV');
@@ -97,11 +97,11 @@ function getApi() {
             var forecastHumidityOutput = requestData.daily[i].humidity;
 
             // Outputs data for each forecast date in their respective cards on the HTML
-            forecastDate[i-1].innerHTML = convertedDate;
-            forecastIcon[i-1].setAttribute('src', 'http://openweathermap.org/img/w/' + forecastWeatherIconCode + '.png');
-            forecastTemp[i-1].innerHTML = 'Temp: ' + forecastTempOutput + ' &#xb0;F';
-            forecastWind[i-1].innerHTML = 'Wind: ' + forecastWindOutput + ' MPH';
-            forecastHumidity[i-1].innerHTML = 'Humidity: ' + forecastHumidityOutput + ' %';
+            forecastDate[i - 1].innerHTML = convertedDate;
+            forecastIcon[i - 1].setAttribute('src', 'http://openweathermap.org/img/w/' + forecastWeatherIconCode + '.png');
+            forecastTemp[i - 1].innerHTML = 'Temp: ' + forecastTempOutput + ' &#xb0;F';
+            forecastWind[i - 1].innerHTML = 'Wind: ' + forecastWindOutput + ' MPH';
+            forecastHumidity[i - 1].innerHTML = 'Humidity: ' + forecastHumidityOutput + ' %';
           };
 
           // Sets the weather dashboard to visible if it is hidden (new page instance)
@@ -115,7 +115,7 @@ function getApi() {
         })
 
         // Function for adding the searched city to the historical search button list
-        .then(function() {
+        .then(function () {
           var historicalSearchEl = document.createElement('button');
           var removedSpacesId = searchInput.value.toLowerCase().replace(/\s+/g, '')
           var checkEl = document.getElementById(removedSpacesId);

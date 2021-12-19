@@ -15,7 +15,6 @@ var forecastIcon = document.getElementsByClassName('forecastIcon');
 var forecastTemp = document.getElementsByClassName('forecastTemp');
 var forecastWind = document.getElementsByClassName('forecastWind');
 var forecastHumidity = document.getElementsByClassName('forecastHumidity');
-var geocodingAPI = 'JIAm99s7cv9HGwGfe0zIAg3ZEQBLSobn';
 var oneCallAPI = 'ef5e2549b8aa888c5f64f0c4c89090d6';
 var unixDate;
 var convertedDate;
@@ -38,9 +37,9 @@ function getApi() {
   if (searchInput.value == "") {
     console.log('No search performed')
   } else {
-    var geocodingUrl = 'https://www.mapquestapi.com/geocoding/v1/address?key=' + geocodingAPI + '&location=' + searchInput.value;
+    var geocodingUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchInput.value + '&appid=' + oneCallAPI;
 
-    // Fetches information from mapquest's api
+    // Fetches information from OpenWeather's Geolocation API
     fetch(geocodingUrl)
       .then(function (geocodeResponse) {
         return geocodeResponse.json();
@@ -48,8 +47,8 @@ function getApi() {
 
       // Function using the retrieved latitude and longitude to retrieve weather data
       .then(function (geocodeData) {
-        var latitude = geocodeData.results[0].locations[0].latLng.lat
-        var longitude = geocodeData.results[0].locations[0].latLng.lng
+        var latitude = geocodeData[0].lat
+        var longitude = geocodeData[0].lon
         var requestUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&units=imperial&appid=' + oneCallAPI;
 
         // Fetches information from the One Call API

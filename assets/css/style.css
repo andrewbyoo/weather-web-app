@@ -24,6 +24,10 @@ h1 {
   margin-bottom: 5px;
 }
 
+button {
+  text-transform: capitalize;
+}
+
 #currentWeather {
   padding: .25em;
 }
@@ -33,7 +37,7 @@ img {
   height: auto !important;
 }
 
-h4 {
+h3 {
   text-transform: capitalize;
 }
 

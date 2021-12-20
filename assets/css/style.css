@@ -1,3 +1,4 @@
+/* Adds background image bottom border to header */
 header {
   background-image: url(../images/rain-background.jpeg);
   background-size: cover;
@@ -6,6 +7,7 @@ header {
   border-bottom-style: solid;
 }
 
+/* Styles the header text */
 h1 {
   text-align: center;
   padding: 30px;
@@ -13,81 +15,83 @@ h1 {
   text-shadow: 0px 0px 20px #0000ff;
 }
 
+/* Styles the 5-day forecast cards */
 .card {
   min-width: 142px;
   background-color: #8eb4fc;
   margin: 1px;
 }
 
+/* Sets width and spacing for the search field and all buttons */
 #searchInput, button {
   width: 100%;
   margin-bottom: 5px;
 }
 
-button {
+/* Sets top and bottom margin of the line between the search and history button area */
+hr {
+  margin-top: 10px;
+  margin-bottom: -16px;
+}
+
+/* Capitalizes the first letter on all buttons and the city name in the current weather section */
+button, h3 {
   text-transform: capitalize;
 }
 
+/* Sets padding for the weather for the current day */
 #currentWeather {
   padding: .25em;
 }
 
+/* Sets the size of the weather icons */
 img {
   width: 74px !important;
   height: auto !important;
 }
 
-h3 {
-  text-transform: capitalize;
-}
-
+/* Sets size and border of the UV Index number */
 #currentUV {
   border: 1px solid #000000;
   border-radius: 1rem;
   padding: 5px;
 }
 
+/* Hides the weather dashboard by default */
 #weatherDashboard {
   visibility: hidden;
 }
 
 /* UV Colors used were from https://en.wikipedia.org/wiki/Ultraviolet_index */
+/* UV color from 1-2 */
 .lowUV {
   background-color: #3ea72d;
   color: #fff;
 }
 
+/* UV color from 3-5 */
 .moderateUV {
   background-color: #fff300;
 }
 
+/* UV color from 6-7 */
 .highUV {
   background-color: #f18b00;
 }
 
+/* UV color from 8-10 */
 .veryHighUV {
   background-color: #e53210;
   color: #fff;
 }
 
+/* UV color from 11+ */
 .extremeUV {
   background-color: #b567a4;
   color: #fff;
 }
 
-hr {
-  margin-top: 10px;
-  margin-bottom: -16px;
-}
-
-#searchedCity {
-  min-width: 300px;
-}
-
-#currentDate {
-  min-width: 140px;
-}
-
+/* Sets bottom margin of the 5-day forecast header */
 h6 {
   margin-bottom: -10px;
 }

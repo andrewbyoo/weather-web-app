@@ -19,23 +19,19 @@ var oneCallAPI = 'ef5e2549b8aa888c5f64f0c4c89090d6';
 var unixDate;
 var convertedDate;
 var historicLocalStorage = localStorage.getItem('historicalSearch');
-var lastSearchStorage = localStorage.getItem('lastSearch');
 
+// On DOM content load, run the function
 document.addEventListener('DOMContentLoaded', function() {
+
+  // If there is historic local storage, display it on screen
   if (historicLocalStorage == null) {
     console.log('No historic data');
   } else {
     historicalSearch.innerHTML = historicLocalStorage;
-  };
-
-  if (lastSearchStorage == null) {
-    console.log('No saved dashboards');
-  } else {
-    var lastSearch = historicalSearch.children[0].innerHTML;
-    searchInput.value = lastSearch;
+    searchInput.value = historicalSearch.children[0].innerHTML;
     searchBtn.click();
   };
-})
+});
 
 // Search button for the city input
 searchBtn.addEventListener('click', function (event) {
@@ -164,7 +160,6 @@ function getApi() {
             };
 
             localStorage.setItem('historicalSearch', historicalSearch.innerHTML);
-            localStorage.setItem('lastSearch', weatherDashboard.innerHTML);
 
             // Clears input field after search queries are completed
             searchInput.value = '';

@@ -14,7 +14,7 @@ The following are the features that were implemented:
 * Color coded UV Index depending on risk assessment.
 
 ## Link
-https://andrewyoo93.github.io/weather-web-app/
+https://andrewbyoo.github.io/weather-web-app/
 
 
 ## License
